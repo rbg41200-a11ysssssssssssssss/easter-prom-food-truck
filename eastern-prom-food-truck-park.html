@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eastern Prom Food Truck Park – Portland, ME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ocean: #1a3a4a;
+  --ocean-deep: #0d2535;
+  --sky: #e8f4f8;
+  --sand: #f5ead8;
+  --rust: #c4532a;
+  --rust-light: #e06840;
+  --green: #2d6a4f;
+  --green-light: #40916c;
+  --cream: #fdf8f0;
+  --white: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+  --border: rgba(0,0,0,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  background: rgba(13,37,53,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.nav-logo-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.01em;
+}
+.nav-logo-sub {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+
+.nav-pill {
+  background: var(--rust);
+  color: var(--white) !important;
+  padding: 0.45rem 1.2rem;
+  border-radius: 30px;
+  transition: background 0.2s !important;
+}
+.nav-pill:hover { background: var(--rust-light) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; display: block; }
+
+/* MOBILE NAV */
+.mob-nav {
+  display: none; position: fixed; inset: 0; z-index: 190;
+  background: var(--ocean-deep);
+  flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+}
+.mob-nav.open { display: flex; }
+.mob-nav a {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; font-weight: 700;
+  color: var(--white); text-decoration: none;
+  transition: color 0.2s;
+}
+.mob-nav a:hover { color: var(--rust-light); }
+.mob-close {
+  position: absolute; top: 1.5rem; right: 2rem;
+  background: none; border: none;
+  color: rgba(255,255,255,0.4); font-size: 1.6rem; cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh; min-height: 640px;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 2.5rem 5rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?w=1800&q=85') center 55% / cover no-repeat;
+}
+
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(13,37,53,0.95) 0%,
+    rgba(13,37,53,0.65) 45%,
+    rgba(13,37,53,0.2) 100%
+  );
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 720px; }
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(196,83,42,0.9);
+  color: var(--white);
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.hero h1 em { font-style: italic; color: #f0c97a; }
+
+.hero-desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.75;
+  max-width: 500px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.hero-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-rust {
+  background: var(--rust);
+  color: var(--white);
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-rust:hover { background: var(--rust-light); transform: translateY(-2px); }
+
+.btn-outline-w {
+  border: 1px solid rgba(255,255,255,0.35);
+  color: var(--white);
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.2s, background 0.2s;
+  display: inline-block;
+}
+.btn-outline-w:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+.hero-badges {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+}
+.hero-badge span:first-child { font-size: 1rem; }
+
+/* STATS BAR */
+.stats-bar {
+  background: var(--ocean-deep);
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f0c97a;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+/* TICKER */
+.ticker {
+  background: var(--rust);
+  padding: 0.7rem 0;
+  overflow: hidden; white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-flex;
+  gap: 2.5rem;
+  animation: tick 28s linear infinite;
+}
+@keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.tick-item {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.tick-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.4); }
+
+/* SECTION */
+section { padding: 6rem 2.5rem; }
+
+.sec-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rust);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--ocean-deep);
+  margin-bottom: 1rem;
+}
+.sec-title em { font-style: italic; color: var(--rust); }
+
+.sec-sub {
+  font-size: 0.97rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 540px;
+  font-weight: 300;
+}
+
+/* ABOUT */
+#about {
+  background: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about-imgs {
+  position: relative;
+  height: 500px;
+}
+
+.about-img-main {
+  position: absolute;
+  top: 0; right: 0;
+  width: 80%; height: 85%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.about-img-accent {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 52%; height: 52%;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 5px solid var(--cream);
+}
+
+.about-tag-box {
+  position: absolute;
+  bottom: 28%; left: 56%;
+  background: var(--rust);
+  color: var(--white);
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  text-align: center;
+  z-index: 3;
+}
+.atb-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 700; line-height: 1; display: block;
+}
+.atb-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+
+.about-text p {
+  font-size: 0.95rem; color: var(--muted);
+  line-height: 1.8; font-weight: 300;
+  margin-bottom: 1.1rem;
+}
+
+.info-chips {
+  display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.75rem;
+}
+.chip {
+  background: var(--sky);
+  border: 1px solid rgba(26,58,74,0.12);
+  color: var(--ocean);
+  padding: 0.4rem 0.9rem;
+  border-radius: 30px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+/* TRUCKS SECTION */
+#trucks {
+  background: var(--sand);
+  padding: 6rem 2.5rem;
+}
+
+.trucks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.trucks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* TRUCK CARD */
+.truck-card {
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.truck-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+}
+
+.truck-img {
+  width: 100%; height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.truck-body { padding: 1.5rem; }
+
+.truck-cuisine {
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 0.5rem;
+}
+
+.truck-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700;
+  color: var(--ocean-deep); margin-bottom: 0.4rem;
+}
+
+.truck-tagline {
+  font-size: 0.85rem; color: var(--muted);
+  line-height: 1.6; font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.truck-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--green);
+  background: rgba(45,106,79,0.08);
+  padding: 0.3rem 0.75rem;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+}
+
+.truck-expand-btn {
+  width: 100%;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ocean);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.truck-expand-btn:hover { background: var(--ocean-deep); color: var(--white); }
+
+.truck-expand-btn .chevron {
+  transition: transform 0.3s;
+  display: inline-block;
+}
+.truck-expand-btn.open .chevron { transform: rotate(180deg); }
+
+/* EXPANDED MENU */
+.truck-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s ease, padding 0.3s ease;
+}
+.truck-menu.open { max-height: 600px; }
+
+.truck-menu-inner {
+  padding: 1.25rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.menu-section-title {
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 0.75rem; margin-top: 1rem;
+}
+.menu-section-title:first-child { margin-top: 0; }
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted rgba(0,0,0,0.08);
+  gap: 1rem;
+}
+.menu-item:last-child { border-bottom: none; }
+
+.menu-item-name {
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--text);
+}
+.menu-item-desc {
+  font-size: 0.75rem; color: var(--muted);
+  line-height: 1.5; margin-top: 2px;
+}
+.menu-item-price {
+  font-size: 0.82rem; font-weight: 600;
+  color: var(--green); white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* GALLERY */
+#gallery {
+  background: var(--ocean-deep);
+  padding: 6rem 0;
+}
+
+.gallery-head { padding: 0 2.5rem; margin-bottom: 2.5rem; }
+.gallery-head .sec-title { color: var(--white); }
+.gallery-head .sec-label { color: #f0c97a; }
+
+.gal-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 3px;
+}
+.gal-cell { overflow: hidden; position: relative; }
+.gal-cell:first-child { grid-row: 1 / 3; }
+.gal-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+  filter: brightness(0.9);
+}
+.gal-cell:hover img { transform: scale(1.06); filter: brightness(1); }
+
+/* REVIEWS */
+#reviews { background: var(--cream); }
+
+.reviews-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.rev-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.rev-card:hover {
+  border-color: rgba(196,83,42,0.25);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+}
+
+.rev-stars { color: #f5a623; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 0.85rem; }
+
+.rev-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 1.1rem;
+}
+.rev-name {
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rev-summary {
+  background: var(--rust);
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.rev-big-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem; font-weight: 700;
+  line-height: 1; color: var(--white);
+}
+.rev-big-stars { color: #f0c97a; font-size: 1rem; letter-spacing: 3px; margin-top: 0.3rem; }
+.rev-big-label {
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); margin-top: 0.5rem;
+}
+
+/* VISIT */
+#visit { background: var(--sand); }
+
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.info-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.i-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.info-item h4 {
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 0.3rem;
+}
+.info-item p, .info-item a {
+  font-size: 0.92rem; color: var(--muted);
+  line-height: 1.65; text-decoration: none; font-weight: 300;
+  display: block; transition: color 0.2s;
+}
+.info-item a:hover { color: var(--rust); }
+
+.map-embed { border-radius: 10px; overflow: hidden; height: 380px; }
+.map-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* CONTACT FORM */
+#contact { background: var(--ocean-deep); }
+#contact .sec-title { color: var(--white); }
+#contact .sec-label { color: #f0c97a; }
+#contact .sec-sub { color: rgba(255,255,255,0.5); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.contact-aside p {
+  font-size: 0.9rem; color: rgba(255,255,255,0.5);
+  line-height: 1.8; font-weight: 300; margin-bottom: 1rem;
+}
+.contact-aside h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--white); margin-bottom: 0.75rem;
+}
+
+.contact-quick {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+.contact-quick h4 {
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #f0c97a; margin-bottom: 1rem;
+}
+.cq-row {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.cq-row:last-child { margin-bottom: 0; }
+.cq-icon { font-size: 1rem; }
+.cq-row a, .cq-row span {
+  font-size: 0.88rem; color: rgba(255,255,255,0.6);
+  text-decoration: none; transition: color 0.2s;
+}
+.cq-row a:hover { color: var(--white); }
+
+.c-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.field { display: flex; flex-direction: column; gap: 0.35rem; }
+.field label {
+  font-size: 0.62rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 500;
+}
+.field input, .field select, .field textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.75rem 1rem;
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 300;
+  outline: none; border-radius: 6px;
+  transition: border-color 0.2s; width: 100%;
+}
+.field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.2); }
+.field select option { background: var(--ocean-deep); }
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: rgba(196,83,42,0.6);
+  background: rgba(255,255,255,0.07);
+}
+.field textarea { resize: vertical; min-height: 90px; }
+
+.form-btn {
+  background: var(--rust);
+  color: var(--white); border: none;
+  padding: 0.9rem 2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer; border-radius: 6px;
+  transition: background 0.2s, transform 0.15s;
+  align-self: flex-start; margin-top: 0.5rem;
+}
+.form-btn:hover { background: var(--rust-light); transform: translateY(-1px); }
+
+.form-ok {
+  display: none;
+  padding: 1rem 1.25rem;
+  background: rgba(45,106,79,0.15);
+  border: 1px solid rgba(45,106,79,0.3);
+  border-radius: 6px;
+  color: #7de8a8; font-size: 0.88rem;
+}
+
+/* FOOTER */
+footer {
+  background: #060e16;
+  padding: 3rem 2.5rem 2rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-logo-wrap h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700;
+  color: var(--white);
+}
+.footer-logo-wrap p {
+  font-size: 0.7rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+  margin-top: 3px;
+}
+
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a {
+  text-decoration: none; font-size: 0.78rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 0.72rem; color: rgba(255,255,255,0.2); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.v { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 4.5rem 1.5rem; }
+  #about { grid-template-columns: 1fr; gap: 3rem; }
+  .about-imgs { height: 300px; }
+  .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gal-cell:first-child { grid-row: auto; }
+  .visit-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .stats-bar { gap: 2rem; padding: 1.25rem 1.5rem; }
+  .hero { padding: 0 1.5rem 4rem; }
+  footer { padding: 2.5rem 1.5rem 1.5rem; }
+  .footer-top { flex-direction: column; }
+  .footer-links { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="#about" onclick="closeMob()">About</a>
+  <a href="#trucks" onclick="closeMob()">Food Trucks</a>
+  <a href="#gallery" onclick="closeMob()">Gallery</a>
+  <a href="#reviews" onclick="closeMob()">Reviews</a>
+  <a href="#visit" onclick="closeMob()">Visit</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-logo-main">Eastern Prom Food Truck Park</span>
+    <span class="nav-logo-sub">Eastern Promenade · Portland, ME</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#trucks">Trucks</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="#contact" class="nav-pill">Contact</a></li>
+  </ul>
+  <div class="hamburger" onclick="openMob()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">🌊 Open Daily · Portland, Maine</span>
+    <h1>Food, <em>Views</em><br>& Good Vibes</h1>
+    <p class="hero-desc">Portland's favorite outdoor food park on the Eastern Promenade. A rotating lineup of local food trucks, bay views, picnic tables, and dogs welcome — lunch and dinner, every day.</p>
+    <div class="hero-row">
+      <a href="#trucks" class="btn-rust">See All Food Trucks</a>
+      <a href="#visit" class="btn-outline-w">Plan Your Visit</a>
+    </div>
+    <div class="hero-badges" style="margin-top:2rem;">
+      <span class="hero-badge"><span>⭐</span> 4.4 Google Rating</span>
+      <span class="hero-badge"><span>🐕</span> Dog Friendly</span>
+      <span class="hero-badge"><span>🌅</span> Casco Bay Views</span>
+      <span class="hero-badge"><span>💵</span> $10–$20</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Food Trucks</div></div>
+  <div class="stat"><div class="stat-num">4.4★</div><div class="stat-label">Google Rating</div></div>
+  <div class="stat"><div class="stat-num">75</div><div class="stat-label">Reviews</div></div>
+  <div class="stat"><div class="stat-num">$10–20</div><div class="stat-label">Per Person</div></div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="tick-item"><span class="tick-dot"></span>Sushi & Hand Rolls</span>
+    <span class="tick-item"><span class="tick-dot"></span>Falafel & Shawarma</span>
+    <span class="tick-item"><span class="tick-dot"></span>Bánh Mì</span>
+    <span class="tick-item"><span class="tick-dot"></span>Wood-Fired Pizza</span>
+    <span class="tick-item"><span class="tick-dot"></span>Tacos</span>
+    <span class="tick-item"><span class="tick-dot"></span>Lobster Rolls</span>
+    <span class="tick-item"><span class="tick-dot"></span>Gelato</span>
+    <span class="tick-item"><span class="tick-dot"></span>Vegan Bowls</span>
+    <span class="tick-item"><span class="tick-dot"></span>Fish & Chips</span>
+    <span class="tick-item"><span class="tick-dot"></span>Espresso & Coffee</span>
+    <span class="tick-item"><span class="tick-dot"></span>Sushi & Hand Rolls</span>
+    <span class="tick-item"><span class="tick-dot"></span>Falafel & Shawarma</span>
+    <span class="tick-item"><span class="tick-dot"></span>Bánh Mì</span>
+    <span class="tick-item"><span class="tick-dot"></span>Wood-Fired Pizza</span>
+    <span class="tick-item"><span class="tick-dot"></span>Tacos</span>
+    <span class="tick-item"><span class="tick-dot"></span>Lobster Rolls</span>
+    <span class="tick-item"><span class="tick-dot"></span>Gelato</span>
+    <span class="tick-item"><span class="tick-dot"></span>Vegan Bowls</span>
+    <span class="tick-item"><span class="tick-dot"></span>Fish & Chips</span>
+    <span class="tick-item"><span class="tick-dot"></span>Espresso & Coffee</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-imgs reveal">
+    <img class="about-img-main" src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&q=80" alt="Food truck park with people eating outside" loading="lazy">
+    <img class="about-img-accent" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80" alt="Colorful food dishes" loading="lazy">
+    <div class="about-tag-box">
+      <span class="atb-num">🌊</span>
+      <span class="atb-label">Bay Views</span>
+    </div>
+  </div>
+  <div class="reveal">
+    <p class="sec-label">Portland's Outdoor Dining Gem</p>
+    <h2 class="sec-title">Sea Air,<br>Great <em>Food</em></h2>
+    <p class="sec-sub" style="margin-bottom:1.25rem;">Nestled along the scenic Eastern Promenade overlooking Casco Bay, Eastern Prom Food Truck Park is Portland's most beloved casual dining destination.</p>
+    <p style="font-size:0.95rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:1.1rem;">A rotating lineup of Portland's best local food trucks set up daily — from Mr. Tuna's legendary hand rolls and sushi to Falafel Mafia's crispy falafels, Vy Bánh Mì's Cajun lobster bánh mì, Cargo Pizza's wood-fired pies, and Gelato Fiasco's unforgettable scoops.</p>
+    <p style="font-size:0.95rem;color:var(--muted);line-height:1.8;font-weight:300;">Grab your food, find a picnic table or a spot on the grass, and watch the sailboats drift across the bay. Dogs are welcome, kids will love it, and the vibe is always good.</p>
+    <div class="info-chips">
+      <span class="chip">🐕 Dog Friendly</span>
+      <span class="chip">🌿 Outdoor Seating</span>
+      <span class="chip">👨‍👩‍👧 Family Friendly</span>
+      <span class="chip">🌊 Casco Bay Views</span>
+      <span class="chip">🚶 Walk-in Only</span>
+      <span class="chip">💵 $10–$20</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUCKS -->
+<section id="trucks">
+  <div class="trucks-header reveal">
+    <div>
+      <p class="sec-label">Who's Here</p>
+      <h2 class="sec-title">The <em>Trucks</em></h2>
+      <p class="sec-sub">Click any truck to see their menu. Lineup may vary — check Instagram for daily schedules.</p>
+    </div>
+  </div>
+
+  <div class="trucks-grid reveal">
+
+    <!-- MR. TUNA -->
+    <div class="truck-card">
+      <img class="truck-img" src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&q=80" alt="Sushi and hand rolls" loading="lazy">
+      <div class="truck-body">
+        <div class="truck-cuisine">Japanese · Sushi</div>
+        <div class="truck-name">Mr. Tuna</div>
+        <p class="truck-tagline">Portland's iconic sushi cart serving fresh hand rolls, tuna tataki, and rice bowls right on the Prom.</p>
+        <div class="truck-price">💵 $12–$22</div>
+        <button class="truck-expand-btn" onclick="toggleMenu(this)">
+          View Menu <span class="chevron">▾</span>
+        </button>
+      </div>
+      <div class="truck-menu">
+        <div class="truck-menu-inner">
+          <div class="menu-section-title">Hand Rolls</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Spicy Tuna Hand Roll</div><div class="menu-item-desc">Fresh tuna, spicy mayo, cucumber, sesame</div></div>
+            <div class="menu-item-price">$12</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Salmon Avocado Roll</div><div class="menu-item-desc">Atlantic salmon, ripe avocado, soy glaze</div></div>
+            <div class="menu-item-price">$13</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Maine Lobster Hand Roll</div><div class="menu-item-desc">Maine lobster, scallion, tobiko, wasabi aioli</div></div>
+            <div class="menu-item-price">$18</div>
+          </div>
+          <div class="menu-section-title">Plates</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Tuna Tataki</div><div class="menu-item-desc">Seared tuna, ponzu, microgreens, sesame oil</div></div>
+            <div class="menu-item-price">$16</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Tuna Rice Bowl</div><div class="menu-item-desc">Seasoned rice, tuna, pickled ginger, nori</div></div>
+            <div class="menu-item-price">$15</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FALAFEL MAFIA -->
+    <div class="truck-card">
+      <img class="truck-img" src="https://images.unsplash.com/photo-1593001872095-7d5b3868fb1d?w=600&q=80" alt="Falafel wrap and hummus" loading="lazy">
+      <div class="truck-body">
+        <div class="truck-cuisine">Middle Eastern · Vegan Friendly</div>
+        <div class="truck-name">Falafel Mafia</div>
+        <p class="truck-tagline">Crispy golden falafel, creamy hummus, and shawarma in fresh pita. Beloved for huge portions and bold flavors.</p>
+        <div class="truck-price">💵 $10–$16</div>
+        <button class="truck-expand-btn" onclick="toggleMenu(this)">
+          View Menu <span class="chevron">▾</span>
+        </button>
+      </div>
+      <div class="truck-menu">
+        <div class="truck-menu-inner">
+          <div class="menu-section-title">Pitas & Wraps</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Pocket Falafel</div><div class="menu-item-desc">Crispy falafel, hummus, pickled cabbage, tahini, fresh herbs</div></div>
+            <div class="menu-item-price">$11</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Crispy Chicken Pita</div><div class="menu-item-desc">Fried chicken, garlic sauce, Israeli salad, hot sauce</div></div>
+            <div class="menu-item-price">$13</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Roast Chicken Tzatziki Pita</div><div class="menu-item-desc">Slow-roasted chicken, cucumber tzatziki, tomato, red onion</div></div>
+            <div class="menu-item-price">$13</div>
+          </div>
+          <div class="menu-section-title">Sides</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Shawarma Seasoned Fries</div><div class="menu-item-desc">Crispy fries, shawarma spice blend, garlic aioli</div></div>
+            <div class="menu-item-price">$7</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Hummus Bowl</div><div class="menu-item-desc">House-made hummus, olive oil, za'atar, warm pita</div></div>
+            <div class="menu-item-price">$9</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VY BÁNH MÌ -->
+    <div class="truck-card">
+      <img class="truck-img" src="https://images.unsplash.com/photo-1583835746434-cf1534674b41?w=600&q=80" alt="Bánh mì sandwich" loading="lazy">
+      <div class="truck-body">
+        <div class="truck-cuisine">Vietnamese · Sandwiches</div>
+        <div class="truck-name">Vy Bánh Mì</div>
+        <p class="truck-tagline">Massive, flavor-packed bánh mì sandwiches. The Cajun lobster is legendary — big chunks of claw in a fresh baguette.</p>
+        <div class="truck-price">💵 $12–$22</div>
+        <button class="truck-expand-btn" onclick="toggleMenu(this)">
+          View Menu <span class="chevron">▾</span>
+        </button>
+      </div>
+      <div class="truck-menu">
+        <div class="truck-menu-inner">
+          <div class="menu-section-title">Bánh Mì Sandwiches</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Cajun Maine Lobster</div><div class="menu-item-desc">Maine lobster claw, Cajun aioli, pickled daikon, jalapeño, cilantro</div></div>
+            <div class="menu-item-price">$22</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Chicken Bánh Mì</div><div class="menu-item-desc">Lemongrass chicken, pickled veg, sriracha mayo, fresh herbs</div></div>
+            <div class="menu-item-price">$13</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Tofu Bánh Mì (Vegan)</div><div class="menu-item-desc">Crispy tofu, house pickles, hoisin, cilantro, cucumber</div></div>
+            <div class="menu-item-price">$12</div>
+          </div>
+          <div class="menu-section-title">Bowls</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Vietnamese Rice Bowl</div><div class="menu-item-desc">Jasmine rice, choice of protein, nuoc cham, pickled veg</div></div>
+            <div class="menu-item-price">$14</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARGO PIZZA -->
+    <div class="truck-card">
+      <img class="truck-img" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" alt="Wood fired pizza" loading="lazy">
+      <div class="truck-body">
+        <div class="truck-cuisine">Italian · Wood-Fired Pizza</div>
+        <div class="truck-name">Cargo Pizza Co.</div>
+        <p class="truck-tagline">Neapolitan-style wood-fired pizzas made fresh to order. Crispy, chewy crust with local Maine toppings.</p>
+        <div class="truck-price">💵 $14–$20</div>
+        <button class="truck-expand-btn" onclick="toggleMenu(this)">
+          View Menu <span class="chevron">▾</span>
+        </button>
+      </div>
+      <div class="truck-menu">
+        <div class="truck-menu-inner">
+          <div class="menu-section-title">Wood-Fired Pizzas</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Margherita</div><div class="menu-item-desc">San Marzano tomato, fresh mozzarella, basil, olive oil</div></div>
+            <div class="menu-item-price">$14</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Maine White</div><div class="menu-item-desc">Ricotta, mozzarella, roasted garlic, fresh herbs, lemon zest</div></div>
+            <div class="menu-item-price">$16</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Lobster Pizza</div><div class="menu-item-desc">Maine lobster, scallion cream, tarragon, fresh chili</div></div>
+            <div class="menu-item-price">$20</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Pepperoni Classic</div><div class="menu-item-desc">House tomato, mozzarella, cupped pepperoni, chili flake</div></div>
+            <div class="menu-item-price">$15</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GELATO FIASCO -->
+    <div class="truck-card">
+      <img class="truck-img" src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=600&q=80" alt="Artisan gelato scoops" loading="lazy">
+      <div class="truck-body">
+        <div class="truck-cuisine">Desserts · Gelato</div>
+        <div class="truck-name">Gelato Fiasco</div>
+        <p class="truck-tagline">Maine's legendary artisan gelato truck. Rotating seasonal flavors made from local ingredients — always worth the line.</p>
+        <div class="truck-price">💵 $6–$12</div>
+        <button class="truck-expand-btn" onclick="toggleMenu(this)">
+          View Menu <span class="chevron">▾</span>
+        </button>
+      </div>
+      <div class="truck-menu">
+        <div class="truck-menu-inner">
+          <div class="menu-section-title">Gelato Flavors (Rotating)</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Dark Chocolate Sea Salt</div><div class="menu-item-desc">Rich 72% dark chocolate with Maine sea salt flakes</div></div>
+            <div class="menu-item-price">$7</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Maine Blueberry Sorbetto</div><div class="menu-item-desc">Dairy-free, made with local wild blueberries</div></div>
+            <div class="menu-item-price">$7</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Salted Caramel Swirl</div><div class="menu-item-desc">Buttery caramel, sea salt, vanilla bean base</div></div>
+            <div class="menu-item-price">$7</div>
+          </div>
+          <div class="menu-section-title">Servings</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Cup or Cone – Single</div></div>
+            <div class="menu-item-price">$6</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Cup or Cone – Double</div></div>
+            <div class="menu-item-price">$9</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Cup or Cone – Triple</div></div>
+            <div class="menu-item-price">$12</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TACOS LA POBLANITA -->
+    <div class="truck-card">
+      <img class="truck-img" src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80" alt="Street tacos" loading="lazy">
+      <div class="truck-body">
+        <div class="truck-cuisine">Mexican · Street Food</div>
+        <div class="truck-name">Tacos La Poblanita</div>
+        <p class="truck-tagline">Authentic Mexican street tacos, burritos, and elotes. Generous portions, bold flavors, and the best salsa on the Prom.</p>
+        <div class="truck-price">💵 $10–$18</div>
+        <button class="truck-expand-btn" onclick="toggleMenu(this)">
+          View Menu <span class="chevron">▾</span>
+        </button>
+      </div>
+      <div class="truck-menu">
+        <div class="truck-menu-inner">
+          <div class="menu-section-title">Tacos (3 per order)</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Carne Asada</div><div class="menu-item-desc">Grilled beef, onion, cilantro, salsa verde, corn tortilla</div></div>
+            <div class="menu-item-price">$13</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Al Pastor</div><div class="menu-item-desc">Marinated pork, pineapple, onion, cilantro, red salsa</div></div>
+            <div class="menu-item-price">$13</div>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Fish Tacos</div><div class="menu-item-desc">Crispy cod, chipotle slaw, avocado crema, lime</div></div>
+            <div class="menu-item-price">$14</div>
+          </div>
+          <div class="menu-section-title">Extras</div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Elote (Street Corn)</div><div class="menu-item-desc">Grilled corn, cotija, chili powder, lime, mayo</div></div>
+            <div class="menu-item-price">$6</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-head reveal">
+    <p class="sec-label">The Atmosphere</p>
+    <h2 class="sec-title" style="color:var(--white);">Casco Bay<br><em style="color:#f0c97a;">Views & Vibes</em></h2>
+  </div>
+  <div class="gal-grid reveal">
+    <div class="gal-cell">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80" alt="Outdoor food park with people dining" loading="lazy">
+    </div>
+    <div class="gal-cell">
+      <img src="https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?w=600&q=80" alt="Food trucks lined up" loading="lazy">
+    </div>
+    <div class="gal-cell">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Colorful food dishes" loading="lazy">
+    </div>
+    <div class="gal-cell">
+      <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80" alt="Ocean waterfront view" loading="lazy">
+    </div>
+    <div class="gal-cell">
+      <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80" alt="People enjoying outdoor dining" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-top reveal">
+    <div>
+      <p class="sec-label">What People Say</p>
+      <h2 class="sec-title">Portland <em>Loves</em> This Place</h2>
+    </div>
+  </div>
+  <div class="reviews-grid reveal">
+    <div class="rev-summary">
+      <div class="rev-big-num">4.4</div>
+      <div class="rev-big-stars">★★★★☆</div>
+      <div class="rev-big-label">75 Google Reviews</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"Highly recommend this Portland staple. We love this place! The vibe is incredible, the food is always amazing, and the bay views make everything taste better."</p>
+      <div class="rev-name">— Portland Local</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"Loved this place — got sushi from Mr. Tuna and a Vietnamese bowl from Vy Bánh Mì. Both were phenomenal. Sat on the grass and watched the boats. Perfect afternoon."</p>
+      <div class="rev-name">— Google Reviewer</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★☆</div>
+      <p class="rev-text">"Wish there was more seating but pretty cool atmosphere overall. The food is great and the location overlooking Casco Bay is unbeatable. Worth the visit."</p>
+      <div class="rev-name">— Google Reviewer</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"What a relaxing, dream-like park by the bay. The Cajun lobster bánh mì from Vy was massive and delicious. I felt like I could sit and watch the sailboats for hours."</p>
+      <div class="rev-name">— Visitor Review</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="reveal">
+    <p class="sec-label">Plan Your Visit</p>
+    <h2 class="sec-title">Come Find <em>Us</em></h2>
+  </div>
+  <div class="visit-grid">
+    <div class="reveal">
+      <div class="info-item">
+        <span class="i-icon">📍</span>
+        <div>
+          <h4>Location</h4>
+          <p>Eastern Promenade (Cutter St Lot)<br>Portland, ME 04101</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="i-icon">🕐</span>
+        <div>
+          <h4>Hours</h4>
+          <p>Open Daily · Lunch & Dinner<br>Approx. 11:00 AM – 10:00 PM<br><em style="font-size:0.8rem;color:var(--muted);">Hours vary by truck — check Instagram</em></p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="i-icon">🐕</span>
+        <div>
+          <h4>Dog Policy</h4>
+          <p>Dogs are welcome outside — leashed pups encouraged!</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="i-icon">🅿️</span>
+        <div>
+          <h4>Parking</h4>
+          <p>Street parking on Eastern Promenade. Arrive early on weekends — it fills fast!</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="i-icon">💳</span>
+        <div>
+          <h4>Payment</h4>
+          <p>Most trucks accept card. Cash always welcome.</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="i-icon">📅</span>
+        <div>
+          <h4>Reservations</h4>
+          <p>Walk-in only — no reservations taken. Grab a table when you arrive!</p>
+        </div>
+      </div>
+    </div>
+    <div class="map-embed reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.5!2d-70.2472!3d43.6722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb29db5216a7569%3A0xa411f2141926000f!2sEastern%20Prom%20Food%20Truck%20Park!5e0!3m2!1sen!2sus!4v1700000000000"
+        allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Eastern Prom Food Truck Park Map">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <p class="sec-label">Get In Touch</p>
+    <h2 class="sec-title">Questions or<br><em>Inquiries?</em></h2>
+    <p class="sec-sub">Have a question about the park, interested in bringing your food truck, or want to plan a group visit? Send us a message.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-aside">
+        <h3>We'd love to hear from you</h3>
+        <p>Whether you're a visitor looking for info, a food truck owner interested in a spot, or planning a private event — reach out and we'll get back to you quickly.</p>
+      </div>
+      <div class="contact-quick">
+        <h4>Quick Info</h4>
+        <div class="cq-row">
+          <span class="cq-icon">📍</span>
+          <span>Eastern Promenade, Portland, ME 04101</span>
+        </div>
+        <div class="cq-row">
+          <span class="cq-icon">🌐</span>
+          <a href="#">Instagram: @easternpromfoodtrucks</a>
+        </div>
+        <div class="cq-row">
+          <span class="cq-icon">⭐</span>
+          <span>4.4 stars · 75 Google Reviews</span>
+        </div>
+        <div class="cq-row">
+          <span class="cq-icon">💵</span>
+          <span>$10–$20 per person · Cash & Card</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form class="c-form" id="contactForm" onsubmit="sendForm(event)">
+        <div class="form-row">
+          <div class="field">
+            <label>Your Name</label>
+            <input type="text" placeholder="Full name" required>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input type="email" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Inquiry Type</label>
+          <select required>
+            <option value="" disabled selected>What's this about?</option>
+            <option>General Question</option>
+            <option>Food Truck Inquiry (Join the Park)</option>
+            <option>Group Visit Planning</option>
+            <option>Press / Media</option>
+            <option>Something Else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Message</label>
+          <textarea placeholder="Tell us what's on your mind…"></textarea>
+        </div>
+        <button type="submit" class="form-btn">Send Message →</button>
+        <div class="form-ok" id="formOk">✓ Thanks! We'll get back to you soon.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo-wrap">
+      <h3>Eastern Prom Food Truck Park</h3>
+      <p>Eastern Promenade · Portland, Maine · Open Daily</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#trucks">Food Trucks</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#visit">Visit</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Eastern Prom Food Truck Park · Portland, ME 04101</p>
+    <p>Open Daily · $10–$20 · Dogs Welcome · No Reservations</p>
+  </div>
+</footer>
+
+<script>
+// Mobile nav
+function openMob() { document.getElementById('mobNav').classList.add('open'); }
+function closeMob() { document.getElementById('mobNav').classList.remove('open'); }
+
+// Truck menu toggle
+function toggleMenu(btn) {
+  const card = btn.closest('.truck-card');
+  const menu = card.querySelector('.truck-menu');
+  const isOpen = menu.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.truck-menu').forEach(m => m.classList.remove('open'));
+  document.querySelectorAll('.truck-expand-btn').forEach(b => {
+    b.classList.remove('open');
+    b.innerHTML = 'View Menu <span class="chevron">▾</span>';
+  });
+
+  // Open clicked if it was closed
+  if (!isOpen) {
+    menu.classList.add('open');
+    btn.classList.add('open');
+    btn.innerHTML = 'Close Menu <span class="chevron">▾</span>';
+  }
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Form
+function sendForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-btn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  setTimeout(() => {
+    e.target.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
+    document.getElementById('formOk').style.display = 'block';
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+  }, 1100);
+}
+</script>
+</body>
+</html>
